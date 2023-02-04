@@ -14,16 +14,16 @@
         <a class="nav-link" href="index.php">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="mark-attendance.php">Mark Attendance</a>
+        <a class="nav-link" href="mark-attendance.php">Mark Attendance</a>
       </li>
         <li class="nav-item">
-            <a class="nav-link" href="view-attendance.php">View Attendance</a>
+            <a class="nav-link active" href="view-attendance.php">View Attendance</a>
         </li>
     </ul>
     <section>
       <div>
-      <h3 class="text-center mt-5">Mark Attendance</h3>
-  <form action="mark_attendance.php" method="post">
+      <h3 class="text-center mt-5">View Attendance</h3>
+  <form action="view-attendance-process.php" method="post">
     <div class="form-group">
       <label for="staff_id">Staff Name</label>
       <select class="form-control" id="staff_id" name="staff_id" required>
@@ -44,18 +44,24 @@
         </select>
     </div>
    
-    <div class="form-group">
-      <label for="status">Status</label>
-      <select class="form-control" id="status" name="status" required>
-        <option value="">Select Status</option>
-        <option value="Present">Present</option>
-        <option value="Absent">Absent</option>
-      </select>
-    </div>
-
+  
     <div class="form-group">
       <label for="date">Date</label>
-      <input type="text" class="form-control" id="date" name="date" placeholder="Select Date" required>
+      
+      <select name="month" id="month" class="form-control">
+      <option value="01">January</option>
+      <option value="02">February</option>
+      <option value="03">March</option>
+      <option value="04">April</option>
+      <option value="05">May</option>
+      <option value="06">June</option>
+      <option value="07">July</option>
+      <option value="08">August</option>
+      <option value="09">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+    </select>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -74,56 +80,11 @@
     
   // Initialize datepicker
   $('#date').datepicker({
-    format: 'yyyy-mm-dd'
+    format: 'yyyy-mm'
   });
 
   //submit form
-    $('form').submit(function(e){
-        e.preventDefault();
-        var staff_id = $('#staff_id').val();
-        var status = $('#status').val();
-        var date = $('#date').val();
-        //update button
-        $('#submit').html('Processing   <i class="fa fa-spinner fa-spin"></i>');
-        //disable button
-        $('#submit').attr('disabled', true);
-        $.ajax({
-        url: 'mark-attendance-process.php',
-        type: 'POST',
-        data: {staff_id: staff_id, status: status, date: date},
-        success: function(data){
-            if(data == 'success'){
-                
-        //update button
-        $('#submit').html('Submit');
-        //disable button
-        $('#submit').attr('disabled', false);
-                alert('Attendance Marked Successfully');
-
-                //reset form
-                $('form')[0].reset();
-        }else{
-            
-        //update button
-        $('#submit').html('Submit');
-        //disable button
-        $('#submit').attr('disabled', false);
-            alert('Something went wrong ' + data);
-        }
-        },
-        error: function(data){
-            
-        //update button
-        $('#submit').html('Submit');
-        //disable button
-        $('#submit').attr('disabled', false);
-            alert('Something went wrong ' + data.statusText);
-            //console.log(data)
-        }
-
-        });
-
-    });
+  
     
 
   

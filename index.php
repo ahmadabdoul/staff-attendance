@@ -16,6 +16,9 @@
       <li class="nav-item">
         <a class="nav-link" href="mark-attendance.php">Mark Attendance</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="view-attendance.php">View Attendance</a>
+      </li>
     </ul>
     <section>
       <div>
@@ -27,7 +30,7 @@
               <th scope="col">Salary</th>
               <th scope="col">Position</th>
               <th scope="col">Date Hired</th>
-              <th scope="col">Action</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -47,7 +50,7 @@
                 echo "<td>" . $row["salary"]. "</td>";
                 echo "<td>" . $row["position"]. "</td>";
                 echo "<td>" . $row["date_hired"]. "</td>";
-                echo "<td><a href='view-details.php?id=" . $row["id"]. "'>View Details</a></td>";
+               
                 echo "</tr>";
                 }
             } else {
